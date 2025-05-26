@@ -348,7 +348,7 @@ class PengaturanPage extends StatelessWidget {
 
   void _showEditProfileDialog(BuildContext context) {
     final TextEditingController usernameController = 
-        TextEditingController(text: 'jonathanraj10');
+        TextEditingController(text: 'Jonathan Arya');
     
     showDialog(
       context: context,
