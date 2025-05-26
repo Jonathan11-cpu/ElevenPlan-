@@ -264,11 +264,11 @@ class _HomeContentState extends State<HomeContent> with TickerProviderStateMixin
   final List<Map<String, dynamic>> subjects = const [
     {'nama': 'Matematika', 'icon': Icons.calculate, 'tugas': 3, 'selesai': 1},
     {'nama': 'Bahasa Inggris', 'icon': Icons.language, 'tugas': 2, 'selesai': 0},
-    {'nama': 'IPA', 'icon': Icons.science, 'tugas': 4, 'selesai': 1},
+    {'nama': 'IPA', 'icon': Icons.science, 'tugas': 3, 'selesai': 1},
     {'nama': 'IPS', 'icon': Icons.public, 'tugas': 3, 'selesai': 1}, // Updated: 3 tugas total, 1 selesai (2 belum selesai)
     {'nama': 'B. Jawa', 'icon': Icons.menu_book, 'tugas': 3, 'selesai': 0},
-    {'nama': 'Agama', 'icon': Icons.church, 'tugas': 4, 'selesai': 2}, // Updated: 4 tugas total, 2 selesai (2 belum selesai)
-    {'nama': 'Seni', 'icon': Icons.palette, 'tugas': 5, 'selesai': 1},
+    {'nama': 'Agama', 'icon': Icons.church, 'tugas': 2, 'selesai': 0}, // Updated: 4 tugas total, 2 selesai (2 belum selesai)
+    {'nama': 'Seni', 'icon': Icons.palette, 'tugas': 2, 'selesai': 1},
   ];
 
   @override

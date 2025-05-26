@@ -1,27 +1,15 @@
 import 'package:flutter/material.dart';
-import 'tugasipa_1.dart';
-import 'tugasipa_2.dart';
-import 'tugasipa_3.dart';
+import 'tugasprakarya.dart';
 
-class IpaPage extends StatelessWidget {
-  const IpaPage({super.key});
+class PrakaryaPage extends StatelessWidget {
+  const PrakaryaPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> tugasList = [
       {
-        'judul': 'TUGAS 1 – Sistem Pernapasan Manusia',
+        'judul': 'TUGAS 1 – Kerajinan Tangan dari Barang Bekas',
         'tanggal': '20 Agustus 2025',
-        'status': 'belum',
-      },
-      {
-        'judul': 'TUGAS 2 – Sistem Pencernaan Manusia',
-        'tanggal': '18 Agustus 2025',
-        'status': 'belum',
-      },
-      {
-        'judul': 'TUGAS 3 – Pencemaran Lingkungan',
-        'tanggal': '16 Agustus 2025',
         'status': 'selesai',
       },
     ];
@@ -104,7 +92,7 @@ class IpaPage extends StatelessWidget {
                           ),
                         ),
                         child: Text(
-                          'IPA (Ilmu Pengetahuan Alam)',
+                          'Prakarya',
                           style: TextStyle(
                             color: Colors.blue[800],
                             fontSize: 18,
@@ -206,20 +194,18 @@ class IpaPage extends StatelessWidget {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(16),
                           onTap: () {
-                            // Navigation logic untuk setiap tugas
-                            if (tugas['judul'].contains('TUGAS 1')) {
-                              Navigator.push(context, MaterialPageRoute(builder: (_) => const TugasIpa1()));
-                            } else if (tugas['judul'].contains('TUGAS 2')) {
-                              Navigator.push(context, MaterialPageRoute(builder: (_) => const TugasIpa2()));
-                            } else if (tugas['judul'].contains('TUGAS 3')) {
-                              Navigator.push(context, MaterialPageRoute(builder: (_) => const TugasIpa3()));
-                            }
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(
+                                builder: (_) => const TugasPrakaryaPage()
+                              )
+                            );
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(20),
                             child: Row(
                               children: [
-                                // Science Icon
+                                // Book Icon
                                 Container(
                                   width: 50,
                                   height: 50,
@@ -228,7 +214,7 @@ class IpaPage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: Icon(
-                                    Icons.science_rounded,
+                                    Icons.menu_book_rounded,
                                     color: Colors.blue[600],
                                     size: 28,
                                   ),

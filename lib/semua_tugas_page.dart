@@ -6,6 +6,11 @@ import 'ips_page.dart';
 import 'b_jawa_page.dart';
 import 'agama_page.dart';
 import 'seni_page.dart';
+// Import untuk mata pelajaran yang sudah selesai
+import 'prakarya_page.dart';
+import 'ppkn_page.dart';
+import 'pjok_page.dart';
+import 'tik_page.dart';
 import 'subject_detail_page.dart';
 
 class SemuaTugasPage extends StatefulWidget {
@@ -28,16 +33,16 @@ class _SemuaTugasPageState extends State<SemuaTugasPage> with TickerProviderStat
     // 7 mata pelajaran dari home (belum selesai semua)
     {'nama': 'Matematika', 'icon': Icons.calculate, 'tugas': 3, 'selesai': 1, 'isCompleted': false},
     {'nama': 'Bahasa Inggris', 'icon': Icons.language, 'tugas': 2, 'selesai': 0, 'isCompleted': false},
-    {'nama': 'IPA', 'icon': Icons.science, 'tugas': 4, 'selesai': 1, 'isCompleted': false},
+    {'nama': 'IPA', 'icon': Icons.science, 'tugas': 3, 'selesai': 1, 'isCompleted': false},
     {'nama': 'IPS', 'icon': Icons.public, 'tugas': 3, 'selesai': 1, 'isCompleted': false},
     {'nama': 'B. Jawa', 'icon': Icons.menu_book, 'tugas': 3, 'selesai': 0, 'isCompleted': false},
-    {'nama': 'Agama', 'icon': Icons.church, 'tugas': 4, 'selesai': 2, 'isCompleted': false},
-    {'nama': 'Seni', 'icon': Icons.palette, 'tugas': 5, 'selesai': 1, 'isCompleted': false},
+    {'nama': 'Agama', 'icon': Icons.church, 'tugas': 2, 'selesai': 0, 'isCompleted': false},
+    {'nama': 'Seni', 'icon': Icons.palette, 'tugas': 2, 'selesai': 1, 'isCompleted': false},
     
     // 4 mata pelajaran tambahan (sudah selesai semua)
-    {'nama': 'Prakarya', 'icon': Icons.build, 'tugas': 3, 'selesai': 3, 'isCompleted': true},
+    {'nama': 'Prakarya', 'icon': Icons.build, 'tugas': 1, 'selesai': 1, 'isCompleted': true},
     {'nama': 'PPKN', 'icon': Icons.account_balance, 'tugas': 2, 'selesai': 2, 'isCompleted': true},
-    {'nama': 'PJOK', 'icon': Icons.sports_soccer, 'tugas': 4, 'selesai': 4, 'isCompleted': true},
+    {'nama': 'PJOK', 'icon': Icons.sports_soccer, 'tugas': 2, 'selesai': 2, 'isCompleted': true},
     {'nama': 'TIK', 'icon': Icons.computer, 'tugas': 3, 'selesai': 3, 'isCompleted': true},
   ];
 
@@ -340,33 +345,41 @@ class _SemuaTugasPageState extends State<SemuaTugasPage> with TickerProviderStat
                 // Subject List
                 Expanded(
                   child: filteredSubjects.isEmpty
-                      ? Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.search_off,
-                                size: 64,
-                                color: Colors.grey[400],
+                      ? SingleChildScrollView(
+                          child: SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.4,
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.search_off,
+                                    size: 64,
+                                    color: Colors.grey[400],
+                                  ),
+                                  const SizedBox(height: 16),
+                                  Text(
+                                    'Tidak ada mata pelajaran yang ditemukan',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.grey[600],
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    'Coba kata kunci yang berbeda',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey[500],
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
                               ),
-                              const SizedBox(height: 16),
-                              Text(
-                                'Tidak ada mata pelajaran yang ditemukan',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.grey[600],
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                'Coba kata kunci yang berbeda',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.grey[500],
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
                         )
                       : ListView.builder(
@@ -439,6 +452,19 @@ class _SemuaTugasPageState extends State<SemuaTugasPage> with TickerProviderStat
                                             break;
                                           case 'Seni':
                                             page = const SeniPage();
+                                            break;
+                                          // Mata pelajaran yang sudah selesai
+                                          case 'Prakarya':
+                                            page = const PrakaryaPage();
+                                            break;
+                                          case 'PPKN':
+                                            page = const PPKNPage();
+                                            break;
+                                          case 'PJOK':
+                                            page = const PJOKPage();
+                                            break;
+                                          case 'TIK':
+                                            page = const TIKPage();
                                             break;
                                           default:
                                             page = SubjectDetailPage(subjectName: nama);

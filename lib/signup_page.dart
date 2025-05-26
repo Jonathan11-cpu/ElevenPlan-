@@ -34,6 +34,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
   
   // Form controllers
   TextEditingController nameController = TextEditingController();
+  TextEditingController nisnController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();
   TextEditingController passController = TextEditingController();
@@ -43,6 +44,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
   
   // Error states untuk form validation
   String? _nameError;
+  String? _nisnError;
   String? _emailError;
   String? _usernameError;
   String? _passwordError;
@@ -116,6 +118,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
     _buttonController.dispose();
     _particleController.dispose();
     nameController.dispose();
+    nisnController.dispose();
     emailController.dispose();
     userController.dispose();
     passController.dispose();
@@ -262,6 +265,17 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
             ),
             const SizedBox(height: 16),
             
+            // NISN field
+            _buildTextField(
+              controller: nisnController,
+              icon: Icons.badge_outlined,
+              labelText: 'NISN',
+              errorText: _nisnError,
+              onChanged: (_) => setState(() => _nisnError = null),
+              keyboardType: TextInputType.number,
+            ),
+            const SizedBox(height: 16),
+            
             // Email field
             _buildTextField(
               controller: emailController,
@@ -269,6 +283,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
               labelText: 'Email',
               errorText: _emailError,
               onChanged: (_) => setState(() => _emailError = null),
+              keyboardType: TextInputType.emailAddress,
             ),
             const SizedBox(height: 16),
             
@@ -410,6 +425,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
     VoidCallback? togglePasswordVisibility,
     String? errorText,
     Function(String)? onChanged,
+    TextInputType? keyboardType,
   }) {
     return Container(
       decoration: BoxDecoration(
@@ -419,6 +435,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
       child: TextField(
         controller: controller,
         obscureText: isPassword && !(isPasswordVisible ?? false),
+        keyboardType: keyboardType,
         style: const TextStyle(
           fontWeight: FontWeight.w500,
         ),
@@ -469,6 +486,24 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
     if (nameController.text.trim().isEmpty) {
       setState(() {
         _nameError = 'Nama tidak boleh kosong';
+      });
+      isValid = false;
+    }
+    
+    // Validate NISN
+    if (nisnController.text.trim().isEmpty) {
+      setState(() {
+        _nisnError = 'NISN tidak boleh kosong';
+      });
+      isValid = false;
+    } else if (nisnController.text.trim().length != 10) {
+      setState(() {
+        _nisnError = 'NISN harus 10 digit';
+      });
+      isValid = false;
+    } else if (!_isValidNISN(nisnController.text.trim())) {
+      setState(() {
+        _nisnError = 'NISN hanya boleh berisi angka';
       });
       isValid = false;
     }
@@ -531,6 +566,12 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
     final emailRegExp = RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
     return emailRegExp.hasMatch(email);
   }
+  
+  // NISN validation (hanya angka)
+  bool _isValidNISN(String nisn) {
+    final nisnRegExp = RegExp(r'^[0-9]+$');
+    return nisnRegExp.hasMatch(nisn);
+  }
 
   void _showLoadingDialog(BuildContext context) {
     showDialog(
@@ -575,18 +616,49 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pop(); // Tutup dialog loading
       
-      // Tampilkan dialog sukses
+      // Tampilkan dialog sukses dengan pesan verifikasi siswa
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          title: const Text(
-            'Pendaftaran Berhasil!',
-            style: TextStyle(color: Color(0xFF1A5B9C), fontWeight: FontWeight.bold),
+          title: Row(
+            children: const [
+              Icon(
+                Icons.verified_user,
+                color: Color(0xFF1A5B9C),
+                size: 28,
+              ),
+              SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  'Pendaftaran Berhasil!',
+                  style: TextStyle(
+                    color: Color(0xFF1A5B9C), 
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ],
           ),
-          content: const Text(
-            'Akun Anda telah berhasil dibuat. Silakan login dengan akun baru Anda.',
-            style: TextStyle(fontSize: 16),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Selamat! Anda terverifikasi sebagai siswa SMPN 11.',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF2E7D32),
+                ),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Akun Anda telah berhasil dibuat dan diverifikasi. Silakan login dengan akun baru Anda.',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
           ),
           actions: [
             TextButton(
@@ -595,7 +667,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
                 Navigator.of(context).pop(); // Kembali ke halaman login
               },
               child: const Text(
-                'Login',
+                'Login Sekarang',
                 style: TextStyle(
                   color: Color(0xFF1A5B9C),
                   fontWeight: FontWeight.bold,

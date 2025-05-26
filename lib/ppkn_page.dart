@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
-import 'tugasipa_1.dart';
-import 'tugasipa_2.dart';
-import 'tugasipa_3.dart';
+import 'tugasppkn1.dart';
+import 'tugasppkn2.dart';
 
-class IpaPage extends StatelessWidget {
-  const IpaPage({super.key});
+class PPKNPage extends StatelessWidget {
+  const PPKNPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> tugasList = [
       {
-        'judul': 'TUGAS 1 – Sistem Pernapasan Manusia',
-        'tanggal': '20 Agustus 2025',
-        'status': 'belum',
-      },
-      {
-        'judul': 'TUGAS 2 – Sistem Pencernaan Manusia',
-        'tanggal': '18 Agustus 2025',
-        'status': 'belum',
-      },
-      {
-        'judul': 'TUGAS 3 – Pencemaran Lingkungan',
-        'tanggal': '16 Agustus 2025',
+        'judul': 'TUGAS 1 – Pancasila sebagai Dasar Negara',
+        'tanggal': '22 Agustus 2025',
         'status': 'selesai',
+      },
+      {
+        'judul': 'TUGAS 2 – Hak dan Kewajiban Warga Negara',
+        'tanggal': '25 Agustus 2025',
+        'status': 'selesai', // Changed from 'belum' to 'selesai'
       },
     ];
 
@@ -104,7 +98,7 @@ class IpaPage extends StatelessWidget {
                           ),
                         ),
                         child: Text(
-                          'IPA (Ilmu Pengetahuan Alam)',
+                          'PPKN',
                           style: TextStyle(
                             color: Colors.blue[800],
                             fontSize: 18,
@@ -151,7 +145,7 @@ class IpaPage extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Pak Budi',
+                              'Bu Sari',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
@@ -206,20 +200,27 @@ class IpaPage extends StatelessWidget {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(16),
                           onTap: () {
-                            // Navigation logic untuk setiap tugas
                             if (tugas['judul'].contains('TUGAS 1')) {
-                              Navigator.push(context, MaterialPageRoute(builder: (_) => const TugasIpa1()));
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (_) => const TugasPpkn1Page()
+                                )
+                              );
                             } else if (tugas['judul'].contains('TUGAS 2')) {
-                              Navigator.push(context, MaterialPageRoute(builder: (_) => const TugasIpa2()));
-                            } else if (tugas['judul'].contains('TUGAS 3')) {
-                              Navigator.push(context, MaterialPageRoute(builder: (_) => const TugasIpa3()));
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (_) => const TugasPpkn2Page()
+                                )
+                              );
                             }
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(20),
                             child: Row(
                               children: [
-                                // Science Icon
+                                // Book Icon
                                 Container(
                                   width: 50,
                                   height: 50,
@@ -228,7 +229,7 @@ class IpaPage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: Icon(
-                                    Icons.science_rounded,
+                                    Icons.menu_book_rounded,
                                     color: Colors.blue[600],
                                     size: 28,
                                   ),

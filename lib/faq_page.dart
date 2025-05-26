@@ -119,28 +119,28 @@ class FaqPage extends StatelessWidget {
                         child: ListView(
                           children: [
                             _buildFaqItem(
-                              'Bagaimana cara mengumpulkan poin?',
-                              'Anda dapat mengumpulkan poin dengan menyelesaikan quiz, login harian, mengundang teman, dan berbagai aktivitas lainnya dalam aplikasi.',
+                              'Apa itu ElevenPlan? ?',
+                              'ElevenPlan adalah platform digital yang membantu Anda merencanakan dan mengelola berbagai aspek kehidupan dengan lebih terorganisir dan efisien.',
                             ),
                             _buildFaqItem(
-                              'Apakah data saya aman?',
-                              'Ya, kami menggunakan enkripsi tingkat tinggi dan mengikuti standar keamanan industri untuk melindungi data pribadi Anda.',
+                              'Berkaitan dengan SMP 11 Malang?',
+                              'Ya, ElevenPlan dikembangkan khusus untuk mendukung kegiatan akademik dan non-akademik di lingkungan SMP 11 Malang.',
                             ),
                             _buildFaqItem(
-                              'Bagaimana cara mengaktifkan autentikasi dua faktor?',
-                              'Buka menu Keamanan di halaman profil, lalu aktifkan toggle "Autentikasi Dua Faktor". Ikuti petunjuk yang muncul untuk menyelesaikan setup.',
+                              'Fitur utama yang tersedia di ElevenPlan?',
+                              'ElevenPlan menyediakan fitur perencanaan jadwal, manajemen tugas, tracking progress, reminder otomatis, dan berbagai tools produktivitas lainnya.',
                             ),
                             _buildFaqItem(
-                              'Bisakah saya mengubah username?',
-                              'Ya, Anda dapat mengubah username melalui halaman profil dengan menekan tombol "Edit Profil".',
+                              'Dapat diakses di semua perangkat?',
+                              'Ya, ElevenPlan dapat diakses melalui berbagai perangkat seperti smartphone, tablet, dan komputer dengan sinkronisasi data real-time.',
                             ),
                             _buildFaqItem(
-                              'Bagaimana cara menghubungi customer service?',
-                              'Anda dapat menghubungi kami melalui email support@example.com atau melalui fitur chat dalam aplikasi.',
+                              'Cara mengumpulkan tugas di ElevenPlan?',
+                              'Anda dapat mengumpulkan tugas melalui fitur submission yang tersedia di setiap assignment. Upload file tugas dan klik submit sebelum deadline.',
                             ),
                             _buildFaqItem(
-                              'Apakah aplikasi ini gratis?',
-                              'Ya, aplikasi ini gratis untuk digunakan dengan berbagai fitur premium yang tersedia.',
+                              'yang harus dilakukan jika lupa kata sandi',
+                              'Klik "Lupa Password" di halaman login, masukkan email terdaftar, dan ikuti instruksi reset password yang dikirim ke email Anda.',
                             ),
                           ],
                         ),

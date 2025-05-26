@@ -37,6 +37,8 @@ dependencies:
   get: ^4.7.2
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.14.3
+
   flutter_test:
     sdk: flutter
 
@@ -47,16 +49,21 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
 
+flutter_launcher_icons:
+  android: true
+  image_path: "asset/jimeng-2025-05-25-777-_Buatkan logo modern, profesional, dan simpel untuk brand bernama elevenplan. ....jpeg"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
+  uses-material-design: true
 
+  assets:
+    - asset/jimeng-2025-05-25-777-_Buatkan logo modern, profesional, dan simpel untuk brand bernama elevenplan. ....jpeg
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-  uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
   # assets:
